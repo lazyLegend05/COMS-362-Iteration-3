@@ -1,0 +1,4 @@
+B001,Emergency,occupied,ER1776887235531
+B002,Emergency,occupied,ER1776887458686
+B003,Emergency,available
+B004,Emergency,available

@@ -1,0 +1,5 @@
+Paracetamol,21
+Ibuprofen,15
+Amoxicillin,10
+Cetirizine,25
+Melatonin,40
