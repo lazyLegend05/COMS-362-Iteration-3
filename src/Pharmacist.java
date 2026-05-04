@@ -106,4 +106,8 @@ public class Pharmacist {
 
         System.out.println("New medicine added successfully!");
     }
+    public void processPrescriptionOrder(java.util.Scanner sc) {
+        PharmacyOperation operation = new ProcessPrescriptionOperation();
+        operation.execute(sc);
+    }
 }

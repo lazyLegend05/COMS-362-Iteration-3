@@ -1,0 +1,4 @@
+TX1777859640407,RX1777859640398,Prescription rejected because medicine was not found in inventory,2026-05-03,20:54
+TX1777859721611,RX1777859721611,Prescription rejected because medicine was not found in inventory,2026-05-03,20:55:21
+TX1777859798566,RX1777859798566,Prescription rejected because medicine was not found in inventory,2026-05-03,20:56:38
+TX1777859830997,RX1777859830986,Prescription approved and inventory updated,2026-05-03,20:57:10

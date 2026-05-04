@@ -48,52 +48,67 @@ public class Main {
         sc.close();
     }
     public static void runPharmacy(Scanner sc) {
-        System.out.println("\n=== Pharmacy Department ===");
-        System.out.println("1. Dispense Medication");
-        System.out.println("2. Restock Medicine");
-        System.out.println("3. Add New Medicine");
-        System.out.print("Choose pharmacy operation: ");
-
-        int pharmacyChoice = readPositiveInt(sc);
+        boolean running = true;
         Pharmacist pharmacist = new Pharmacist("Aadi", "P001");
 
-        switch (pharmacyChoice) {
-            case 1:
-                System.out.print("Enter patient name: ");
-                String patientName = readNonEmptyString(sc);
+        while (running) {
+            System.out.println("\n=== Pharmacy Department ===");
+            System.out.println("1. Dispense Medication");
+            System.out.println("2. Restock Medicine");
+            System.out.println("3. Add New Medicine");
+            System.out.println("4. Process Prescription Order");
+            System.out.println("5. Exit Pharmacy Department");
+            System.out.print("Choose pharmacy operation: ");
 
-                System.out.print("Enter medicine name: ");
-                String medicineName = readNonEmptyString(sc);
+            int pharmacyChoice = readPositiveInt(sc);
 
-                System.out.print("Enter quantity prescribed: ");
-                int quantity = readPositiveInt(sc);
+            switch (pharmacyChoice) {
+                case 1:
+                    System.out.print("Enter patient name: ");
+                    String patientName = readNonEmptyString(sc);
 
-                Patient patient = new Patient(patientName);
-                pharmacist.dispenseMedication(patient, medicineName, quantity);
-                break;
+                    System.out.print("Enter medicine name: ");
+                    String medicineName = readNonEmptyString(sc);
 
-            case 2:
-                System.out.print("Enter medicine name to restock: ");
-                String restockMedicine = readNonEmptyString(sc);
+                    System.out.print("Enter quantity prescribed: ");
+                    int quantity = readPositiveInt(sc);
 
-                System.out.print("Enter quantity to add: ");
-                int restockQty = readPositiveInt(sc);
+                    Patient patient = new Patient(patientName);
+                    pharmacist.dispenseMedication(patient, medicineName, quantity);
+                    break;
 
-                pharmacist.restockMedicine(restockMedicine, restockQty);
-                break;
+                case 2:
+                    System.out.print("Enter medicine name to restock: ");
+                    String restockMedicine = readNonEmptyString(sc);
 
-            case 3:
-                System.out.print("Enter new medicine name: ");
-                String newMedicineName = readNonEmptyString(sc);
+                    System.out.print("Enter quantity to add: ");
+                    int restockQty = readPositiveInt(sc);
 
-                System.out.print("Enter starting quantity: ");
-                int newMedicineQty = readPositiveInt(sc);
+                    pharmacist.restockMedicine(restockMedicine, restockQty);
+                    break;
 
-                pharmacist.addNewMedicine(newMedicineName, newMedicineQty);
-                break;
+                case 3:
+                    System.out.print("Enter new medicine name: ");
+                    String newMedicineName = readNonEmptyString(sc);
 
-            default:
-                System.out.println("Invalid pharmacy option.");
+                    System.out.print("Enter starting quantity: ");
+                    int newMedicineQty = readPositiveInt(sc);
+
+                    pharmacist.addNewMedicine(newMedicineName, newMedicineQty);
+                    break;
+
+                case 4:
+                    pharmacist.processPrescriptionOrder(sc);
+                    break;
+
+                case 5:
+                    running = false;
+                    System.out.println("Exiting Pharmacy Department.");
+                    break;
+
+                default:
+                    System.out.println("Invalid pharmacy option.");
+            }
         }
     }
 

@@ -3,4 +3,4 @@ Ibuprofen,15
 Amoxicillin,10
 Cetirizine,25
 Melatonin,40
-Penicillin,56
+Penicillin,60
