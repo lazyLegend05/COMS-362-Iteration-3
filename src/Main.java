@@ -221,9 +221,31 @@ public class Main {
 		
         FileHandler fileHandler = new FileHandler("lab.txt");
 
-        System.out.print("Enter patient name: ");
-        String name = readNonEmptyString(sc);
-
+        String name;
+        while(true) {
+        	System.out.print("Enter patient name: ");
+        	name = sc.nextLine();
+        	
+        	boolean valid = true;
+        	
+        	if(name.trim().isEmpty()) {
+        		valid = false;
+        	} else {
+        		for(int i = 0; i < name.length(); i++) {
+        			if(!Character.isLetter(name.charAt(i)) && name.charAt(i) != ' ') {
+        				valid = false;
+        				break;
+        			}
+        		}
+        	}
+        	
+        	if(valid) {
+        		break;
+        	}
+        	
+        	System.out.println("Invalid name. Letters only.");
+        }
+        
         int age;
         while (true) {
             System.out.print("Enter patient age: ");
@@ -232,12 +254,44 @@ public class Main {
                 break;
             }
         }
+        
+        String contact;
+        while(true) {
+        	System.out.print("Enter Phone Number: ");
+        	contact = sc.nextLine();
+        	
+        	boolean valid = true;
+        	
+        	if(contact.length() == 0) {
+        		valid = false;
+        		
+        	} else {
+        		for(int i = 0; i < contact.length(); i++) {
+        			if(!Character.isDigit(contact.charAt(i))) {
+        				valid = false;
+        				break;
+        			}
+        		}
+        	}
+        	
+        	if (valid) {
+        		break;
+        	}
+        	
+        	System.out.println("Invalid phone number. Digits only");
+        }
 
-        System.out.print("Enter Phone Number: ");
-        String contact = readNonEmptyString(sc);
-
-        System.out.print("Enter Test Type: ");
-        String test = readNonEmptyString(sc);
+       String test;
+       while(true) {
+    	   System.out.print("Enter Test Type: ");
+    	   test = sc.nextLine();
+    	   
+    	   if(!test.trim().isEmpty()) {
+    		   break;
+    	   }
+    	   
+    	   System.out.println("Invalid test type. Cannot be empty.");
+       }
 
         Patient patient = new Patient(name, age, contact);
 		
