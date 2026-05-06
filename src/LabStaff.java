@@ -5,15 +5,13 @@ public class LabStaff extends Staff{
 	}
 	
 	public void registerLabTest(Patient patient, String test, FileHandler fh) {
-		String testID = "L" + System.currentTimeMillis(); 
+		LabContext context = new LabContext();
 		
-		LaboratoryTests labTest = new LaboratoryTests(testID, patient, test);
+		context.setStrategy(new StandardLabTestStrategy());
 		
-		fh.writeRecord(labTest.toFileString());
-		
-		System.out.println("Lab test registered by " + getName() + "! Test ID: " + testID);
-	}
-		
+		context.execute(patient, test, fh);
+	
+	}		
 }
 
 	
