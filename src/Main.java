@@ -50,6 +50,7 @@ public class Main {
     public static void runPharmacy(Scanner sc) {
         boolean running = true;
         Pharmacist pharmacist = new Pharmacist("Aadi", "P001");
+        PharmacyCommandInvoker invoker = new PharmacyCommandInvoker();
 
         while (running) {
             System.out.println("\n=== Pharmacy Department ===");
@@ -61,44 +62,23 @@ public class Main {
             System.out.print("Choose pharmacy operation: ");
 
             int pharmacyChoice = readPositiveInt(sc);
+            PharmacyCommand command = null;
 
             switch (pharmacyChoice) {
                 case 1:
-                    System.out.print("Enter patient name: ");
-                    String patientName = readNonEmptyString(sc);
-
-                    System.out.print("Enter medicine name: ");
-                    String medicineName = readNonEmptyString(sc);
-
-                    System.out.print("Enter quantity prescribed: ");
-                    int quantity = readPositiveInt(sc);
-
-                    Patient patient = new Patient(patientName);
-                    pharmacist.dispenseMedication(patient, medicineName, quantity);
+                    command = new DispenseMedicationCommand(sc, pharmacist);
                     break;
 
                 case 2:
-                    System.out.print("Enter medicine name to restock: ");
-                    String restockMedicine = readNonEmptyString(sc);
-
-                    System.out.print("Enter quantity to add: ");
-                    int restockQty = readPositiveInt(sc);
-
-                    pharmacist.restockMedicine(restockMedicine, restockQty);
+                    command = new RestockMedicineCommand(sc, pharmacist);
                     break;
 
                 case 3:
-                    System.out.print("Enter new medicine name: ");
-                    String newMedicineName = readNonEmptyString(sc);
-
-                    System.out.print("Enter starting quantity: ");
-                    int newMedicineQty = readPositiveInt(sc);
-
-                    pharmacist.addNewMedicine(newMedicineName, newMedicineQty);
+                    command = new AddMedicineCommand(sc, pharmacist);
                     break;
 
                 case 4:
-                    pharmacist.processPrescriptionOrder(sc);
+                    command = new ProcessPrescriptionCommand(sc, pharmacist);
                     break;
 
                 case 5:
@@ -108,6 +88,10 @@ public class Main {
 
                 default:
                     System.out.println("Invalid pharmacy option.");
+            }
+
+            if (command != null) {
+                invoker.executeCommand(command);
             }
         }
     }
